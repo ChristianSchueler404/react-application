@@ -1,6 +1,7 @@
 import React from 'react'
-class userList extends React.Component<{},{ isLoaded: boolean, Users: User[]}>{
 
+class userList extends React.Component<{},{ isLoaded: boolean, Users: User[]}>{
+   
     constructor(props: any){
         super(props)
         this.state = {
@@ -10,8 +11,10 @@ class userList extends React.Component<{},{ isLoaded: boolean, Users: User[]}>{
     }
 
     componentDidMount(){
-        const apiUrl = 'http://127.0.0.1:8080/v1/all';
-        fetch(apiUrl)
+        
+        let apiUrl: any = process.env.REACT_APP_BACKEND_URL
+        console.log(apiUrl+"\nREACT_APP_BACKEND_URL="+process.env.REACT_APP_BACKEND_URL);
+        fetch(apiUrl+"v1/all")
             .then((response) => response.json())
             .then(
                 (data) => {
